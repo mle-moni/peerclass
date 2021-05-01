@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Nouveau site sagazan.net"
+	>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="shortcut icon" href="https://mle-moni.fr/favicon-32x32.png">
+	<title>
+		@section('title')
+			Peerclasses
+		@endsection
+	</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+	<link href="/css/main.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/48680109a0.js" crossorigin="anonymous"></script>
+
+	@section('styles')
+	@endsection
+
+	@section('imports')
+	@endsection
+</head>
+<body>
+	@include('layouts/partials/navbar')
+	@if(flashMessages.has('notification'))
+		<h5 class="text-align-center font-s-20 color-success">{{ flashMessages.get('notification') }}</h5>
+	@endif
+	@if(flashMessages.has('error'))
+		<h5 class="text-align-center font-s-20 color-error">{{ flashMessages.get('error') || '' }}</h5>
+	@endif
+	<div class="flex" style="width: 100%; height: 70%;">
+		@!section('content')
+	</div>
+</body>
+</html>

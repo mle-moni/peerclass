@@ -1,0 +1,44 @@
+@layout('layouts/app')
+
+@section('title')
+	Peerclasses - Videos
+@endsection
+
+@section('content')
+
+<div class="container m-auto">
+	<h1 class="text-align-center">
+		@if(user)
+			Les videos de {{ user.login }}
+		@else
+			Toutes les videos
+		@endif
+	</h1>
+	<div class="articles">
+		@each(video in videos)
+			<div class="article">
+				<h2 class="title">{{ video.title }}</h2>
+				<div class="flex">
+					<img class="m-auto" src="https://img.youtube.com/vi/{{ video.youtubeId }}/default.jpg" alt="{{ video.title }}">
+				</div>
+				<a href="/videos/{{ video.id }}" class="article-btn color-accent-1 u-animation-1 font-s-20">
+					<i class="fas fa-arrow-right"></i> Aller voir
+				</a>
+				@if(auth.user.isAdmin() || auth.user.id === video.userId)
+					<div class="flex p-t-20">
+						<form class="flex m-auto" method="post"
+						action="{{ route('VideosController.destroy', {id: video.id}) + '?_method=DELETE' }}">
+							{{ csrfField() }}
+							<button class="m-auto">Supprimer <i class="fas fa-trash"></i></button>
+						</form>
+					</div>
+				@endif
+			</div>
+		@endeach
+	</div>
+	<form action="/uploads/create" class="flex p-t-20">
+		<button class="m-auto bg-secondary-2 hov-accent-2">Poster une peerclass <i class="fas fa-plus"></i></button>
+	</form>
+</div>
+
+@endsection

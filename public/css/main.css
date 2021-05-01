@@ -1,0 +1,10 @@
+@import "./vars.css";
+@import "./utils.css";
+@import "./general.css";
+@import "./navbar.css";
+@import "./animations/link.css";
+@import "./animations/hamburger.css";
+@import "./components/blockquote.css";
+@import "./components/articles.css";
+@import "./components/forms.css";
+@import "./components/buttons.css";

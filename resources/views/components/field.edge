@@ -1,0 +1,30 @@
+{{-- PARAMETERS:		 [] = optionnel
+	name
+	[type]
+	[value]
+	[autofocus]
+	[hidden]
+	[placeholder]
+--}}
+
+<div class="form-field">
+	@if(!hidden)
+		<label for="{{ name }}">
+			@yield($slots.main())
+				{{ name }}
+			@endyield
+		</label>
+	@endif
+	<input type="{{ type ||'text' }}" name="{{ name }}"
+		value="{{ flashMessages.get( name ) || value || '' }}"
+		@if (autofocus)
+			autofocus
+		@endif
+		@if (hidden)
+			hidden
+		@endif
+		@if (placeholder)
+			placeholder="{{placeholder}}"
+		@endif
+	/>
+</div>

@@ -1,0 +1,33 @@
+@layout('layouts/app')
+
+@section('title')
+	Peerclasses - Admin
+@endsection
+
+@section('content')
+
+<div class="container m-auto">
+		<h1 class="text-align-center">Administration</h1>
+		<div class="articles">
+			<div class="article">
+				@if(uploadsToTreat !== 0)
+					<h2 class="title">Valider les uploads</h2>
+					<div class="content font-s-20">
+						Un fois les videos validées, elles seront postées sur YouTube en non referencées
+					</div>
+					<a href="/admin/upload-all" class="p-t-20 article-btn color-accent-1 u-animation-1 font-s-20">
+						<i class="fas fa-arrow-right"></i> Valider {{uploadsToTreat}} video(s)
+					</a>
+				@else
+					<div class="text-align-center content font-s-20">
+						Aucune video n'a besoin d'etre validée, parfait !
+					</div>
+				@endif
+				<a href="/admin/logs" class="p-t-20 article-btn color-accent-1 u-animation-1 font-s-20">
+					<i class="fas fa-arrow-right"></i> Voir les logs
+				</a>
+			</div>
+		</div>
+	</div>
+
+@endsection

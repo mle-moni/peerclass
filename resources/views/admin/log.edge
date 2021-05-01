@@ -1,0 +1,31 @@
+@layout('layouts/app')
+
+@section('title')
+	Peerclasses - Logs
+@endsection
+
+@section('content')
+
+<div class="container m-auto">
+	<h1 class="text-align-center">
+		Logs
+	</h1>
+	@if(logs.length === 0)
+		<p class="text-align-center font-s-20">Hmm, il n'y a pas encore de logs</p>
+	@endif
+
+	@each(log in logs)
+		@set('logTypeClass', '')
+		@if(log.type === 'error')
+			@set('logTypeClass', 'color-error')
+		@elseif(log.type === 'message')
+			@set('logTypeClass', 'color-blue')
+		@endif
+		<p class="font-s-20">
+			<span class="{{logTypeClass}}">{{ log.type }}:</span> {{ log.msg }}
+		</p>
+	@endeach
+
+</div>
+
+@endsection

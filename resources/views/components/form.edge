@@ -1,0 +1,13 @@
+{{-- PARAMETERS:		 [] = optionnel
+	action
+	method
+	[multipart]
+--}}
+
+<form autocomplete="off" class="form container-50" action="{{ action }}" method="{{ method }}"
+	@if(multipart)
+		enctype="multipart/form-data"
+	@endif
+>
+	@!yield($slots.main())
+</form>

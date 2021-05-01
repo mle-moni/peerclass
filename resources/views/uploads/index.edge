@@ -1,0 +1,55 @@
+@layout('layouts/app')
+
+@section('title')
+	Peerclasses - Uploads
+@endsection
+
+@section('content')
+
+<div class="container m-auto">
+		<h1 class="text-align-center">
+			@if(auth.user.isAdmin())
+				Tous les uploads
+			@else
+				Vos uploads
+			@endif
+		</h1>
+		<div class="articles">
+			@each(upload in uploads)
+				<div class="article">
+					<h2 class="title">{{ upload.title }}</h2>
+					<div class="content font-s-20 text-align-center">
+						{{ upload.description }}
+					</div>
+					<span class="text-align-center">
+						(en attente de vérification par un admin)
+					</span>
+					<div class="flex">
+						<video class="m-auto" controls width="250" src="{{ `/show-upload/${upload.id}?${Date.now()}` }}">
+							Sorry, your browser doesn't support embedded videos.
+						</video>
+					</div>
+					@if(upload.fileExtname !== 'mp4')
+						<span class="text-align-center">
+							les formats mkv et avi sont rarement supportés sur les navigateurs, donc pas de preview désolé :c
+						</span>
+					@endif
+					<div class="flex p-t-20">
+						<form class="flex m-auto" action="{{ route('UploadsController.edit', {id: upload.id}) }}">
+							<button class="bg-blue hov-accent-2">Modifier <i class="fas fa-edit"></i></button>
+						</form>
+						<form class="flex m-auto" method="post"
+						action="{{ route('UploadsController.destroy', {id: upload.id}) + '?_method=DELETE' }}">
+							{{ csrfField() }}
+							<button class="m-auto">Supprimer <i class="fas fa-trash"></i></button>
+						</form>
+					</div>
+				</div>
+			@endeach
+		</div>
+		<form action="/uploads/create" class="flex p-t-20">
+			<button class="m-auto bg-secondary-2 hov-accent-2">Poster une peerclass <i class="fas fa-plus"></i></button>
+		</form>
+	</div>
+
+@endsection

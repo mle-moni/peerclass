@@ -1,0 +1,70 @@
+.u-animation-1,
+.u-animation-2 {
+	--animation    : cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	text-decoration: none;
+	position       : relative;
+}
+
+.u-animation-1:before,
+.u-animation-1:after {
+	content         : "";
+	position        : absolute;
+	bottom          : 2px;
+	left            : 0;
+	right           : 0;
+	/** underline thinkness */
+	height          : 2px;
+	background-color: var(--color-accent-1);
+}
+
+.u-animation-1:before {
+	opacity   : 0;
+	transform : translateY(-8px);
+	transition: transform 0s var(--animation), opacity 0s;
+}
+
+.u-animation-1:after {
+	opacity   : 0;
+	transform : translateY(4px);
+	transition: transform 0.2s var(--animation), opacity 0.2s;
+}
+
+.u-animation-1:hover:before,
+.u-animation-1:hover:after,
+.u-animation-1:focus:before,
+.u-animation-1:focus:after {
+	opacity  : 1;
+	transform: translateY(0);
+}
+
+.u-animation-1:hover:before,
+.u-animation-1:focus:before {
+	transition: transform 0.2s var(--animation), opacity 0.2s;
+}
+
+.u-animation-1:hover:after,
+.u-animation-1:focus:after {
+	transition: transform 0s 0.2s var(--animation), opacity 0s 0.2s;
+}
+
+
+.u-animation-2:before {
+	content           : "";
+	position          : absolute;
+	width             : 100%;
+	height            : 1px;
+	bottom            : 0px;
+	left              : 0;
+	background-color  : var(--color-accent-1);
+	visibility        : hidden;
+	-webkit-transform : scaleX(0);
+	transform         : scaleX(0);
+	-webkit-transition: all 0.5s var(--animation) 0s;
+	transition        : all 0.5s var(--animation) 0s;
+}
+
+.u-animation-2:hover:before {
+	visibility       : visible;
+	-webkit-transform: scaleX(1);
+	transform        : scaleX(1);
+}

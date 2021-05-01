@@ -1,0 +1,65 @@
+#main-navbar .container-90 {
+	height         : 100px;
+	display        : flex;
+	flex-direction : row;
+	justify-content: space-between;
+	align-items    : center;
+}
+
+/** Logo */
+#main-navbar .nav-logo a {
+	font-size : 30px;
+	text-align: center;
+}
+
+/** Menu */
+
+#main-navbar .nav-menu a {
+	margin-left : 10px;
+	margin-right: 10px;
+	font-weight : 700;
+	font-size   : 20px;
+	padding     : 2px;
+}
+
+/** Mobile */
+
+.hamburger {
+	display: none;
+}
+
+@media only screen and (max-width: 900px) {
+	.hamburger {
+		display: block;
+		z-index: 6;
+	}
+
+	#main-navbar .nav-menu .mobile a {
+		margin    : 20px;
+		text-align: center;
+		font-size : 25px;
+	}
+
+	#main-navbar .nav-menu .mobile,
+	#main-navbar .nav-menu .mobile .link-container {
+		display       : flex;
+		flex-direction: column;
+		margin        : auto;
+	}
+
+	#main-navbar .nav-menu {
+		display   : flex;
+		position  : absolute;
+		width     : 100vw;
+		height    : 100vh;
+		background: var(--color-secondary-1);
+		top       : 0;
+		left      : 0;
+		z-index   : 5;
+		transition: all .3s ease-in-out;
+	}
+
+	#main-navbar .mobile-menu-closed {
+		transform: translateX(-130vh);
+	}
+}

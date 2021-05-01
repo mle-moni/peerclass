@@ -1,0 +1,28 @@
+.articles {
+	display        : flex;
+	flex-wrap      : wrap;
+	justify-content: center;
+	flex-direction : row;
+	padding-top    : 30px;
+}
+
+.articles .article {
+	width         : 350px;
+	margin        : 10px;
+	display       : flex;
+	flex-direction: column;
+}
+
+.articles .article .title {
+	text-align: center;
+}
+
+.articles .article .article-btn {
+	margin : auto;
+	display: flex;
+}
+
+.articles .article .article-btn i {
+	margin       : auto;
+	padding-right: 3px;
+}

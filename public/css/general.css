@@ -1,0 +1,30 @@
+body,
+html {
+	margin     : 0;
+	padding    : 0;
+	font-family: 'Nunito', sans-serif;
+	height     : 100vh;
+}
+
+* {
+	box-sizing             : border-box;
+	color                  : var(--color-text);
+	-webkit-font-smoothing : antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	background: var(--color-primary-1);
+}
+
+::-moz-selection {
+	background: var(--color-secondary-2);
+}
+
+::selection {
+	background: var(--color-secondary-2);
+}

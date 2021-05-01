@@ -1,0 +1,165 @@
+.form {
+	display       : flex;
+	flex-direction: column;
+	align-items   : center;
+	margin        : auto;
+}
+
+.form .form-field {
+	display       : flex;
+	flex-direction: column;
+	align-items   : center;
+	margin-top    : 10px;
+}
+
+.form .form-field label {
+	text-align: center;
+}
+
+.form textarea {
+	width                   : 250px;
+	/* height               : 30px; */
+	-webkit-border-radius   : 10px;
+	-moz-border-radius      : 10px;
+	border-radius           : 10px;
+	padding-left            : 10px;
+	padding-right           : 10px;
+	border                  : 1px solid var(--color-secondary-1);
+	background-color        : var(--color-primary-1);
+}
+
+.form textarea:focus {
+	outline: none !important;
+	border : 1px solid var(--color-accent-1);
+}
+
+.form .form-field input[type="text"],
+.form .form-field input[type="password"] {
+	width                : 250px;
+	height               : 30px;
+	-webkit-border-radius: 60px;
+	-moz-border-radius   : 60px;
+	border-radius        : 60px;
+	padding-left         : 10px;
+	padding-right        : 10px;
+	border               : 1px solid var(--color-secondary-1);
+	background-color     : var(--color-primary-1);
+}
+
+.form .form-field input:focus,
+.form .form-field input[type="number"]:focus {
+	outline: none !important;
+	border : 1px solid var(--color-accent-1);
+}
+
+.form .form-field input[type="number"] {
+	text-align           : center;
+	width                : 60px;
+	height               : 30px;
+	-webkit-border-radius: 60px;
+	-moz-border-radius   : 60px;
+	border-radius        : 60px;
+	padding-left         : 10px;
+	padding-right        : 10px;
+	border               : 1px solid var(--color-secondary-1);
+	background-color     : var(--color-primary-1);
+}
+
+/* example of checkbox + radio
+<label class="checkbox"><input type="checkbox"onchange="console.log('changed');"><span></span>Hello </label><label class="checkbox"><input type="checkbox"onchange="console.log('changed');"><span></span>World </label><label class="radio"><input type="radio"name="radio"><span></span>This </label><label class="radio"><input type="radio"name="radio"><span></span>That </label>
+*/
+
+.checkbox,
+.radio {
+	position: relative;
+	cursor  : pointer;
+	padding : 1em;
+}
+
+.checkbox::selection,
+.radio::selection {
+	background: transparent;
+}
+
+.checkbox input+span,
+.radio input+span {
+	background                 : white;
+	content                    : "";
+	display                    : inline-block;
+	margin                     : 0 0.5em 0 0;
+	padding                    : 0;
+	vertical-align             : middle;
+	width                      : 1em;
+	height                     : 1em;
+	transform                  : translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility        : hidden;
+}
+
+.checkbox input+span::after,
+.radio input+span::after {
+	content   : "";
+	display   : block;
+	transform : scale(0);
+	transition: transform 0.2s;
+}
+
+@media screen and (min-width: 768px) {
+
+	.checkbox:hover input+span,
+	.radio:hover input+span {
+		box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
+	}
+}
+
+.checkbox input:active+span,
+.radio input:active+span {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
+}
+
+.checkbox input[type="checkbox"]+span {
+	box-shadow: 0 0 0 1px var(--color-text);
+}
+
+.checkbox input:focus+span,
+.radio input:focus+span {
+	box-shadow: 0 0 0 1px var(--color-accent-1);
+}
+
+.checkbox input:checked+span::after,
+.radio input:checked+span::after {
+	transform: scale(1);
+}
+
+.checkbox input,
+.radio input {
+	position: absolute;
+	cursor  : pointer;
+	opacity : 0;
+}
+
+.checkbox input+span {
+	border-radius: 2px;
+}
+
+.checkbox input+span::after {
+	background     : url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNjQgNjQiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxwb2x5Z29uIHBvaW50cz0iMTMuNzA3LDMyLjI5MyAxMi4yOTMsMzMuODU0IDI0LjI5Myw0NiAyNS43MDcsNDYgNDkuNzA3LDIxLjg1NCA0OC4yOTMsMjAuMzY2IDI1LDQzLjYyMyAiLz48L2c+PC9zdmc+) no-repeat center;
+	background-size: contain;
+	width          : 1em;
+	height         : 1em;
+}
+
+.radio input+span {
+	border-radius: 100%;
+}
+
+.radio input+span::after {
+	border-radius: 100%;
+	margin       : 0.65em;
+	width        : 0.75em;
+	height       : 0.75em;
+}
+
+.radio input:checked+span::after {
+	background: var(--color-text);
+}
