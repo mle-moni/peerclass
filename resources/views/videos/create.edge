@@ -1,0 +1,37 @@
+@layout('layouts/app')
+
+@section('title')
+	Peerclasses - Videos
+@endsection
+
+@section('content')
+	<div class="flex m-auto">
+		@component('components/form', action = route('VideosController.store'), method = 'post', multipart = true)
+		{{ csrfField() }}
+
+		<h1 class="text-align-center">Nouvelle video</h1>
+
+		@component('components/field', name = 'title', autofocus = true)
+			Titre de la video
+		@endcomponent
+
+		@component('components/field', name = 'youtube_url', placeholder = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+			Youtube URL
+		@endcomponent
+
+		@component('components/errors')
+			{{
+				flashMessages.get('errors.title') ||
+				flashMessages.get('errors.youtube_url') ||
+				''
+			}}
+		@endcomponent
+
+		@component('components/confirm_button')
+			Ajouter
+		@endcomponent
+	@endcomponent
+	</div>
+
+
+@endsection

@@ -10,13 +10,9 @@
 		<h1 class="text-align-center">Administration</h1>
 		<div class="articles">
 			<div class="article">
-				@if(uploadsToTreat !== 0)
-					<h2 class="title">Valider les uploads</h2>
-					<div class="content font-s-20">
-						Un fois les videos validées, elles seront postées sur YouTube en non referencées
-					</div>
-					<a href="/admin/upload-all" class="p-t-20 article-btn color-accent-1 u-animation-1 font-s-20">
-						<i class="fas fa-arrow-right"></i> Valider {{uploadsToTreat}} video(s)
+				@if(videosToTreat !== 0)
+					<a href="/admin/videos" class="article-btn color-accent-1 u-animation-1 font-s-20">
+						<i class="fas fa-arrow-right"></i> Voir les {{videosToTreat}} videos non validées
 					</a>
 				@else
 					<div class="text-align-center content font-s-20">

@@ -27,21 +27,18 @@ Route.get('/auth/42/callback', 'AuthController.callback')
 
 Route.group(() => {
 	Route.get('/', 'AccountsController.index')
+	Route.get('/videos/non-validated', 'AccountsController.accountVideosNonValidated')
+	Route.get('/videos/validated', 'AccountsController.accountVideosValidated')
 }).prefix('account').middleware('auth')
 
 Route.group(() => {
-	Route.get('/show-upload/:id', 'UploadsController.showUpload')
-	Route.resource('/uploads', 'UploadsController').middleware({
-		create: 'maxQueue',
-		store: 'maxQueue',
-	})
 	Route.resource('/videos', 'VideosController')
 }).middleware('auth')
 
 
 Route.group(() => {
-	Route.get('/admin', 'HomeController.admin')
-	Route.get('/admin/upload-all', 'YoutubeController.authToUpload')
-	Route.get('/auth/google/callback', 'YoutubeController.callback')
-	Route.get('/admin/logs', 'HomeController.logs')
+	Route.get('/admin', 'AdminController.index')
+	Route.get('/admin/logs', 'AdminController.logs')
+	Route.get('/admin/videos', 'AdminController.videos')
+	Route.post('/admin/validate/:id', 'AdminController.validate')
 }).middleware(['auth', 'admin'])

@@ -31,6 +31,4 @@ export default Env.rules({
 	MAILGUN_API_KEY: Env.schema.string(),
 	INTRA_42_API_ID: Env.schema.string(),
 	INTRA_42_API_SECRET: Env.schema.string(),
-	GOOGLE_API_ID: Env.schema.string(),
-	GOOGLE_API_SECRET: Env.schema.string(),
 })

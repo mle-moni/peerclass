@@ -1,5 +1,17 @@
+{{-- PARAMETERS:		 [] = optionnel
+	[classList]
+	[style]
+--}}
+
 <div>
-	<button type="submit">
+	<button type="submit"
+		@if(classList)
+			class="{{ classList }}"
+		@endif
+		@if(style)
+			class="{{ style }}"
+		@endif
+	>
 		@!yield($slots.main())
 	</button>
 </div>

@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Env from '@ioc:Adonis/Core/Env'
 import User from 'App/Models/User';
+import Log from 'App/Models/Log';
 const needle = require('needle');
 
 const ClientOAuth2 = require('client-oauth2')
@@ -32,11 +33,19 @@ export default class AuthController {
 			})
 			const req = await needle('get', params.url, {}, { headers: params.headers });
 			if (req.statusCode !== 200) {
+				Log.create({
+					type: 'error',
+					msg: `Error with 42 API, request failed with status: ${req.statusCode}`
+				})
 				session.flash('error', `La requete sur l'API de 42 à échouée avec le code d\'erreur : ${req.statusCode}`)
 				return response.redirect('/')
 			}
 			return this.loginOrCreate(ctx, req.body.login)
 		} catch (error) {
+			Log.create({
+				type: 'error',
+				msg: `Error with 42 API callback: ${JSON.stringify(error)}`
+			})
 			session.flash('error', `Oh, non ! une erreur inconnue c\'est produite : ${error}`)
 			return response.redirect('/')
 		}
@@ -46,13 +55,19 @@ export default class AuthController {
 		const { auth, response } = ctx
 		let user = await User.findBy('login', userLogin)
 		if (!user) {
-			// password will not be used to authenticate so it's fine to set it to a dumb value
 			user = await User.create({
 				login: userLogin,
-				password: 'not-used'
+			})
+			Log.create({
+				type: 'message',
+				msg: `Someone created an account`
 			})
 		}
 		await auth.login(user, true)
+		Log.create({
+			type: 'message',
+			msg: `Someone logged in`
+		})
 		return response.redirect('/')
 	}
 

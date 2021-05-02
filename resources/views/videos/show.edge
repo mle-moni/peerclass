@@ -8,7 +8,7 @@
 	<style>
 		.video-responsive {
 			overflow:hidden;
-			padding-bottom:50%;
+			padding-bottom:45%;
 			position:relative;
 			height:0;
 		}
@@ -37,10 +37,28 @@
 	</div>
 
 	<div class="flex">
-		<a href="https://www.youtube.com/watch?v={{ video.youtubeId }}" class="m-auto p-t-20 article-btn color-accent-1 u-animation-1 font-s-20">
+		<a href="{{ video.getUrl() }}" class="m-auto p-t-20 article-btn color-accent-1 u-animation-1 font-s-20">
 			<i class="fas fa-arrow-right"></i> Regarder sur Youtube directement
 		</a>
 	</div>
+	@if(auth.user.isAdmin || auth.user.id === video.userId)
+		<div class="flex p-t-20">
+			<form class="flex m-auto" action="{{ route('VideosController.edit', {id: video.id}) }}">
+				<button class="bg-blue hov-accent-2">Modifier <i class="fas fa-edit"></i></button>
+			</form>
+			@if(auth.user.isAdmin)
+				<form method="POST" class="p-10 flex m-auto" action="{{ route('AdminController.validate', {id: video.id}) }}">
+					{{ csrfField() }}
+					<button class="bg-blue hov-accent-2">Valider <i class="fas fa-check"></i></button>
+				</form>
+			@endif
+			<form class="flex m-auto" method="post"
+			action="{{ route('VideosController.destroy', {id: video.id}) + '?_method=DELETE' }}">
+				{{ csrfField() }}
+				<button class="m-auto">Supprimer <i class="fas fa-trash"></i></button>
+			</form>
+		</div>
+	@endif
 </div>
 
 @endsection

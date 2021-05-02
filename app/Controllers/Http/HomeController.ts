@@ -1,6 +1,4 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Log from 'App/Models/Log'
-import Upload from 'App/Models/Upload'
 
 export default class HomeController {
 	public async home({ view, auth }: HttpContextContract) {
@@ -10,19 +8,5 @@ export default class HomeController {
 		} else {
 			return view.render('home/logged_out')
 		}
-	}
-
-	public async admin({ view }: HttpContextContract) {
-		const uploads = await Upload.all()
-		return view.render('admin/index', {
-			uploadsToTreat: uploads.length
-		})
-	}
-
-	public async logs({ view }: HttpContextContract) {
-		const logs = await Log.all()
-		return view.render('admin/log', {
-			logs
-		})
 	}
 }

@@ -21,8 +21,14 @@
 		@elseif(log.type === 'message')
 			@set('logTypeClass', 'color-blue')
 		@endif
-		<p class="font-s-20">
-			<span class="{{logTypeClass}}">{{ log.type }}:</span> {{ log.msg }}
+		<p class="font-s-26">
+			<span class="{{logTypeClass}}">
+				<span class="font-s-16 bold">
+					{{ log.createdAt.setLocale('en').toFormat('dd/MM/yyyy, HH:mm') }} :
+				</span>
+				{{ log.type }}:
+			</span>
+			{{ log.msg }}
 		</p>
 	@endeach
 
