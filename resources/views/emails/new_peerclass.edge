@@ -1,0 +1,11 @@
+<h1>Nouvelle peerclass à valider</h1>
+
+<h2>Details de la peerclass :</h2>
+<h3>Titre: {{ peerclass.title }}</h3>
+@if(peerclass.youtubeId !== '')
+	<a href="{{ peerclass.getUrl() }}">Lien vers la peerclass</a>
+	<br>
+@endif
+<a href="{{ url }}/peerclasses/{{ peerclass.id }}">
+	Aller valider la peerclass
+</a>

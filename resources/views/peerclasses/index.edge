@@ -1,0 +1,39 @@
+@layout('layouts/app')
+
+@section('title')
+	Peerclasses - Videos
+@endsection
+
+@section('content')
+
+<div class="container m-auto">
+	<h1 class="text-align-center">
+		{{ h1Content || 'Toutes les peerclasses' }}
+	</h1>
+	<div class="articles">
+		@each(peerclass in peerclasses)
+			<div class="article">
+				<h2 class="title">{{ peerclass.title }}</h2>
+				@if(peerclass.youtubeId !== '')
+					<div class="flex">
+						<img class="m-auto" src="https://img.youtube.com/vi/{{ peerclass.youtubeId }}/default.jpg" alt="{{ peerclass.title }}">
+					</div>
+				@endif
+				<a href="/peerclasses/{{ peerclass.id }}" class="article-btn color-accent-1 u-animation-1 font-s-20">
+					<i class="fas fa-arrow-right"></i> Aller voir
+				</a>
+				@if(admin)
+					<form method="POST" class="p-10 flex m-auto" action="{{ route('AdminController.validate', {id: peerclass.id}) }}">
+						{{ csrfField() }}
+						<button class="bg-blue hov-accent-2">Valider <i class="fas fa-check"></i></button>
+					</form>
+				@endif
+			</div>
+		@endeach
+	</div>
+	<form action="/peerclasses/create" class="flex p-t-20">
+		<button class="m-auto bg-secondary-2 hov-accent-2">Poster une peerclass <i class="fas fa-plus"></i></button>
+	</form>
+</div>
+
+@endsection

@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Video from 'App/Models/Video'
+import Peerclass from 'App/Models/Peerclass'
 
 export default class AccountsController {
 	public async index({ view }: HttpContextContract) {
@@ -8,13 +8,13 @@ export default class AccountsController {
 
 	public async accountVideosValidated({ auth, view }: HttpContextContract) {
 		const user = auth.user!
-		let videos = await (Video.query().where('isValidated', true).where('userId', user.id))
-		return view.render('videos/index', { videos, h1Content: 'Vos videos validées' })
+		const peerclasses = await (Peerclass.query().where('isValidated', true).where('userId', user.id))
+		return view.render('peerclasses/index', { peerclasses, h1Content: 'Vos peerclasses validées' })
 	}
 
 	public async accountVideosNonValidated({ auth, view }: HttpContextContract) {
 		const user = auth.user!
-		let videos = await Video.query().where('isValidated', false).where('userId', user.id)
-		return view.render('videos/index', { videos, h1Content: 'Vos videos en attente de validation' })
+		const peerclasses = await Peerclass.query().where('isValidated', false).where('userId', user.id)
+		return view.render('peerclasses/index', { peerclasses, h1Content: 'Vos peerclasses en attente de validation' })
 	}
 }

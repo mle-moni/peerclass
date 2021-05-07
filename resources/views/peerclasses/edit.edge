@@ -1,0 +1,60 @@
+@layout('layouts/app')
+
+@section('title')
+	Peerclasses - Modifier
+@endsection
+
+@section('content')
+	<div class="flex m-auto">
+		@component('components/form', action = route('PeerclassesController.update', {id: peerclass.id}) + '?_method=PUT', method = 'post', multipart = true)
+		{{ csrfField() }}
+
+		<h1 class="text-align-center">Modifier une peerclass</h1>
+
+		@component('components/field', name = 'title', autofocus = true, value = peerclass.title)
+			Titre de la peerclass
+		@endcomponent
+
+		<div class="p-t-20 form-field">
+			<label for="desc">
+				Description en markdown
+			</label>
+
+			@if(flashMessages.get('description') || (peerclass.description && peerclass.description !== ''))
+				<textarea id="desc" name="description" wrap="physical"
+				>{{ flashMessages.get('description') || peerclass.description }}</textarea>
+			@else
+				<textarea rows="5" id="desc" name="description" wrap="physical"
+				placeholder="exemple:&#13;&#10;list:&#13;&#10;- oui&#13;&#10;- non&#13;&#10;[Lien](https://www.google.com)"
+				></textarea>
+			@endif
+		</div>
+
+		@if(peerclass.youtubeId !== '')
+			@component('components/field', name = 'youtube_url', placeholder = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', value = peerclass.getUrl())
+				Youtube URL
+			@endcomponent
+		@else
+			@component('components/field', name = 'youtube_url', placeholder = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+				Youtube URL
+			@endcomponent
+		@endif
+		@component('components/errors')
+			{{
+				flashMessages.get('errors.title') ||
+				flashMessages.get('errors.youtube_url') ||
+				''
+			}}
+		@endcomponent
+
+		@component('components/confirm_button')
+			Modifier
+			@if(peerclass.isValidated && !auth.user.isAdmin)
+				(la peerclass devra se faire valider a nouveau par un admin)
+			@endif
+		@endcomponent
+	@endcomponent
+	</div>
+
+
+@endsection

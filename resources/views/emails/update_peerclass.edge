@@ -1,0 +1,12 @@
+<h1>Suite a une mise à jour, une peerclass a besoin d'etre validée</h1>
+
+<h2>Details de la peerclass :</h2>
+<h3>Titre: {{ peerclass.title }}</h3>
+@if(peerclass.youtubeId !== '')
+	<a href="{{ peerclass.getUrl() }}">Lien vers la peerclass</a>
+	<br>
+@endif
+
+<a href="{{ url }}/peerclasses/{{ peerclass.id }}">
+	Aller valider la peerclass
+</a>

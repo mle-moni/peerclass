@@ -5,7 +5,7 @@ import {
 	hasMany,
 	HasMany
 } from '@ioc:Adonis/Lucid/Orm'
-import Video from './Video'
+import Peerclass from './Peerclass'
 
 export default class User extends BaseModel {
 	@column({ isPrimary: true })
@@ -29,10 +29,10 @@ export default class User extends BaseModel {
 	@column.dateTime({ autoCreate: true, autoUpdate: true })
 	public updatedAt: DateTime
 
-	public canEdit(ressource: Video) {
+	public canEdit(ressource: Peerclass) {
 		return ressource.userId === this.id || this.isAdmin
 	}
 
-	@hasMany(() => Video)
-	public videos: HasMany<typeof Video>
+	@hasMany(() => Peerclass)
+	public peerclasses: HasMany<typeof Peerclass>
 }

@@ -1,0 +1,51 @@
+@layout('layouts/app')
+
+@section('title')
+	Peerclasses - Videos
+@endsection
+
+@section('styles')
+
+@endsection
+
+@section('content')
+
+<div class="container m-auto">
+	<h1 class="text-align-center">
+		{{ peerclass.title }}
+	</h1>
+
+	@if(peerclass.description)
+		<div class="container-50 m-auto">
+			{{{ mdToHtmlString(peerclass.description) }}}
+		</div>
+	@endif
+
+	@if(peerclass.youtubeId !== '')
+		<div class="flex">
+			<a href="{{ peerclass.getUrl() }}" class="m-auto p-t-20 article-btn color-accent-1 u-animation-1 font-s-20">
+				<i class="fas fa-arrow-right"></i> Regarder sur Youtube
+			</a>
+		</div>
+	@endif
+	@if(auth.user.isAdmin || auth.user.id === peerclass.userId)
+		<div class="flex p-t-20">
+			<form class="flex m-auto" action="{{ route('PeerclassesController.edit', {id: peerclass.id}) }}">
+				<button class="bg-blue hov-accent-2">Modifier <i class="fas fa-edit"></i></button>
+			</form>
+			@if(auth.user.isAdmin && !peerclass.isValidated)
+				<form method="POST" class="p-10 flex m-auto" action="{{ route('AdminController.validate', {id: peerclass.id}) }}">
+					{{ csrfField() }}
+					<button class="bg-blue hov-accent-2">Valider <i class="fas fa-check"></i></button>
+				</form>
+			@endif
+			<form class="flex m-auto" method="post"
+			action="{{ route('PeerclassesController.destroy', {id: peerclass.id}) + '?_method=DELETE' }}">
+				{{ csrfField() }}
+				<button class="m-auto">Supprimer <i class="fas fa-trash"></i></button>
+			</form>
+		</div>
+	@endif
+</div>
+
+@endsection

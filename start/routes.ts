@@ -27,18 +27,18 @@ Route.get('/auth/42/callback', 'AuthController.callback')
 
 Route.group(() => {
 	Route.get('/', 'AccountsController.index')
-	Route.get('/videos/non-validated', 'AccountsController.accountVideosNonValidated')
-	Route.get('/videos/validated', 'AccountsController.accountVideosValidated')
+	Route.get('/peerclasses/non-validated', 'AccountsController.accountVideosNonValidated')
+	Route.get('/peerclasses/validated', 'AccountsController.accountVideosValidated')
 }).prefix('account').middleware('auth')
 
 Route.group(() => {
-	Route.resource('/videos', 'VideosController')
+	Route.resource('/peerclasses', 'PeerclassesController')
 }).middleware('auth')
 
 
 Route.group(() => {
 	Route.get('/admin', 'AdminController.index')
 	Route.get('/admin/logs', 'AdminController.logs')
-	Route.get('/admin/videos', 'AdminController.videos')
+	Route.get('/admin/peerclasses', 'AdminController.peerclasses')
 	Route.post('/admin/validate/:id', 'AdminController.validate')
 }).middleware(['auth', 'admin'])
