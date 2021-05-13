@@ -36,6 +36,7 @@
 		@component('components/errors')
 			{{
 				flashMessages.get('errors.title') ||
+				flashMessages.get('errors.description') ||
 				flashMessages.get('errors.youtube_url') ||
 				''
 			}}

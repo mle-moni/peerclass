@@ -123,10 +123,10 @@ export default class PeerclassesController {
 
 	private validationSchema = schema.create({
 		title: schema.string({ trim: true }, [
-			rules.maxLength(30)
+			rules.maxLength(45)
 		]),
 		description: schema.string.optional({ trim: true }, [
-			rules.maxLength(300)
+			rules.maxLength(1000)
 		]),
 		youtube_url: schema.string.optional({ trim: true }, [
 			rules.maxLength(50),
@@ -136,8 +136,8 @@ export default class PeerclassesController {
 
 	private validationMap = {
 		'title.required': 'Le nom de la peerclass est requis',
-		'title.maxLength': 'Le nom de la peerclass ne dois pas dépasser 30 charactères',
-		'description.maxLength': 'La description de la peerclass ne dois pas dépasser 300 charactères',
+		'title.maxLength': 'Le nom de la peerclass ne dois pas dépasser 45 charactères',
+		'description.maxLength': 'La description de la peerclass ne dois pas dépasser 1000 charactères',
 		'youtube_url.regex': `L'url de la video doit etre une video Youtube`,
 		'youtube_url.maxLength': `L'URL de la peerclass ne dois pas dépasser 50 charactères `,
 	}
